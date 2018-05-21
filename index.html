@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Nim Game
+	</title>
+</head>
+<style type="text/css">
+
+	h1{
+		margin: 0;
+	}
+	.tile_block{
+		width: 80%;
+		margin: 0 auto;
+		/*border: 2px solid red;*/
+		background: #c0f0ff;
+		font-size: 40px;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.play_section{
+		width: 80%;
+		margin: 20px auto;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	#result{
+		text-align: center;
+	}
+
+	.error{
+		color: red;
+	}
+
+	.success{
+		color: green;
+	}
+</style>
+
+<body>
+
+
+<div class="tile_block">
+	<div id="tile1">
+		1
+	</div>
+	<div id="tile2">
+		4
+	</div>
+	<div id="tile3">
+		5
+	</div>
+</div>
+
+<div class="play_section">
+	<div>
+		<h1 id="palyer1">First Player Section</h1>
+		<label>Tile: </label>
+		<input type="text" name="" id="onetile">
+		<label>Number: </label>
+		<input type="text" name="" id="number1">
+		<button id="btn1">check</button>
+	</div>
+
+	<div>
+		<h1 id="palyer2">Second Player Section</h1>
+		<label>Tile: </label>
+		<input type="text" name="" id="twotile">
+		<label>Number: </label>
+		<input type="text" name="" id="number2">
+		<button id="btn2">check</button>
+	</div>
+</div>
+
+
+<h2 id="result"></h2>
+
+<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+
+		$("#btn1").click(function(){
+			var tile1 = Number($("#onetile").val());
+			var number1 = Number($("#number1").val());
+
+			console.log(tile1 + " " +number1);
+
+			var previous = $("#tile"+tile1).text() - number1;
+
+			if(previous < 0)
+			{
+				previous = 0;
+			}
+
+			$("#tile"+tile1).text(previous);
+			$("#palyer1").addClass("error");
+			$("#palyer2").addClass("success");
+			$("#palyer2").removeClass("error");
+			$("#palyer1").removeClass("success");
+			who_will_win();
+		});
+
+		$("#btn2").click(function(){
+			var tile1 = Number($("#twotile").val());
+			var number1 = Number($("#number2").val());
+
+			console.log(tile1 + " " +number1);
+			if(previous < 0)
+			{
+				previous = 0;
+			}
+			var previous = $("#tile"+tile1).text() - number1;
+			$("#tile"+tile1).text(previous);
+			$("#palyer2").addClass("error");
+			$("#palyer1").removeClass("error");
+			$("#palyer2").removeClass("success");
+			$("#palyer1").addClass("success");
+			who_will_win();
+		});
+
+
+
+		who_will_win();
+		
+
+	});
+
+	function who_will_win(){
+		var one = Number($("#tile1").text());
+		var two = Number($("#tile2").text());
+		var three = Number($("#tile3").text());
+
+
+		var result = one^two^three;
+		console.log(result);
+		if(result == 0)
+		{
+			console.log("2nd Player Win");
+			$("#result").text("2nd Player Win");
+		}
+		else{
+			console.log("first Player win");
+			$("#result").text("First Player Win");
+		}
+		
+	}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
